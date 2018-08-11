@@ -103,6 +103,12 @@ public abstract class MacBookProPriceController {
         return client;
     }
 
+    private Number parsePrice(String priceString) throws ParseException {
+
+        final NumberFormat numberFormat = NumberFormat.getCurrencyInstance(getLocale());
+
+        return numberFormat.parse(priceString.trim());
+    }
 
     protected abstract String getURL();
 
@@ -112,6 +118,5 @@ public abstract class MacBookProPriceController {
 
     protected abstract Locale getLocale();
 
-    protected abstract Number parsePrice(String priceString) throws ParseException;
 
 }

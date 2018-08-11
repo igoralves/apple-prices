@@ -50,20 +50,12 @@ public class MacBookProPriceControllerBR extends MacBookProPriceController {
         return LOCALE;
     }
 
-    @Override
-    protected Number parsePrice(String priceString) throws ParseException {
-
-        priceString = priceString.trim().replace("R$ ", "");
-
-        NumberFormat nf = NumberFormat.getNumberInstance(LOCALE);
-
-        return nf.parse(priceString);
-    }
-
     public static void main(String[] args) throws IOException {
 
         final MacBookProPriceControllerBR macBookProPriceControllerBR = new MacBookProPriceControllerBR();
 
-        macBookProPriceControllerBR.loadMacBookPros();
+        final List<Product> products = macBookProPriceControllerBR.loadMacBookPros();
+
+        products.forEach(System.out::println);
     }
 }

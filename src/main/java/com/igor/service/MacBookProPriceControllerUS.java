@@ -44,16 +44,6 @@ public class MacBookProPriceControllerUS extends MacBookProPriceController {
         return LOCALE;
     }
 
-    @Override
-    protected Number parsePrice(String priceString) throws ParseException {
-
-        priceString = priceString.trim().replace("$", "");
-
-        NumberFormat nf = NumberFormat.getNumberInstance(LOCALE);
-
-        return nf.parse(priceString);
-    }
-
     public static void main(String[] args) throws IOException {
 
         final MacBookProPriceControllerUS macBookProPriceControllerUS = new MacBookProPriceControllerUS();
