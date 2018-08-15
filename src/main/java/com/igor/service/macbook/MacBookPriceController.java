@@ -34,9 +34,6 @@ public abstract class MacBookPriceController {
                 .filter(c -> ((HtmlDivision) c.getParentNode()).getAttribute("class").contains("modelshown"))
                 .collect(Collectors.toList());
 
-//        final List<?> byXPath = page.getByXPath("*//h2");
-
-
         final String modelPrefix = page.getByXPath("*//h2[@class='as-bundleselection-modeltitle']")
                 .stream()
                 .map(HtmlHeading2.class::cast)
