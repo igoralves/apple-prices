@@ -1,10 +1,11 @@
-package com.igor.service;
+package com.igor.service.macbookpro;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlHeading3;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSpan;
+import com.igor.service.Product;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -78,12 +79,12 @@ public abstract class MacBookProPriceController {
                     .map(HtmlSpan.class::cast)
                     .findFirst();
 
-            Number price;
+            Float price;
 
             try {
                 price = parsePrice(span.get().getTextContent());
             } catch (ParseException e) {
-                price = 0;
+                price = 0F;
                 e.printStackTrace();
             }
 
@@ -103,11 +104,11 @@ public abstract class MacBookProPriceController {
         return client;
     }
 
-    private Number parsePrice(String priceString) throws ParseException {
+    private Float parsePrice(String priceString) throws ParseException {
 
         final NumberFormat numberFormat = NumberFormat.getCurrencyInstance(getLocale());
 
-        return numberFormat.parse(priceString.trim());
+        return numberFormat.parse(priceString.trim()).floatValue();
     }
 
     protected abstract String getURL();

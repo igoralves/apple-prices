@@ -1,18 +1,11 @@
-package com.igor.service;
+package com.igor.service.macbookpro;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlDivision;
-import com.gargoylesoftware.htmlunit.html.HtmlHeading3;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlSpan;
+import com.igor.service.Product;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by igor on 2018-08-11.
@@ -48,14 +41,5 @@ public class MacBookProPriceControllerBR extends MacBookProPriceController {
     @Override
     protected Locale getLocale() {
         return LOCALE;
-    }
-
-    public static void main(String[] args) throws IOException {
-
-        final MacBookProPriceControllerBR macBookProPriceControllerBR = new MacBookProPriceControllerBR();
-
-        final List<Product> products = macBookProPriceControllerBR.loadMacBookPros();
-
-        products.forEach(System.out::println);
     }
 }
