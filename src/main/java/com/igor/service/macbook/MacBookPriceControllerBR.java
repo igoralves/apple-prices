@@ -12,12 +12,12 @@ import java.util.Locale;
  * Created by igor on 2018-08-02.
  */
 @RestController
-public class MacBookPriceControllerNL extends MacBookPriceController {
+public class MacBookPriceControllerBR extends MacBookPriceController {
 
-    public static final String URL = "https://www.apple.com/nl/shop/buy-mac/macbook";
-    public static final Locale LOCALE = new Locale("nl", "NL");;
+    public static final String URL = "https://www.apple.com/br/shop/buy-mac/macbook";
+    public static final Locale LOCALE = new Locale("pt", "BR");;
 
-    @RequestMapping("/nl/macbook")
+    @RequestMapping("/br/macbook")
     public List<Product> loadMacBooks() throws IOException {
         return super.loadMacBooks();
     }

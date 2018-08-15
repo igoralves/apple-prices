@@ -21,7 +21,7 @@ public abstract class MacBookProPriceController {
     public static final String DATA_GROUP_13 = "13inch";
     public static final String DATA_GROUP_15 = "15inch";
 
-    protected List<Product> loadMacBookPros() throws IOException {
+    protected List<Product> loadMacBooksPro() throws IOException {
 
 
         final List<Product> products = getProducts(getType13Inch());

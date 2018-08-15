@@ -20,8 +20,8 @@ public class MacBookProPriceControllerHU extends MacBookProPriceController {
     public static final Locale LOCALE = new Locale("hu", "HU");
 
     @RequestMapping("/hu/macbookpro")
-    public List<Product> loadMacBookPros() throws IOException {
-        return super.loadMacBookPros();
+    public List<Product> loadMacBooksPro() throws IOException {
+        return super.loadMacBooksPro();
     }
 
     @Override

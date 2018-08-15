@@ -16,7 +16,7 @@ public class MacBookProPriceControllerPLTest {
 
         final MacBookProPriceControllerPL controller = new MacBookProPriceControllerPL();
 
-        final List<Product> products = controller.loadMacBookPros();
+        final List<Product> products = controller.loadMacBooksPro();
 
         Assert.assertEquals(6, products.size());
 

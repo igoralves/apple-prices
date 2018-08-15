@@ -1,10 +1,7 @@
 package com.igor.service.macbook;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlDivision;
-import com.gargoylesoftware.htmlunit.html.HtmlHeading3;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlSpan;
+import com.gargoylesoftware.htmlunit.html.*;
 import com.igor.service.Product;
 
 import java.io.IOException;
@@ -30,13 +27,20 @@ public abstract class MacBookPriceController {
         final WebClient client = getClient();
 
         final HtmlPage page = client.getPage(getURL());
-        final String dataGroup;
 
         final List<HtmlDivision> tags = page.getByXPath("*//div[@class='as-macbtr-optioncontent']")
                 .stream()
                 .map(c -> (HtmlDivision) c)
                 .filter(c -> ((HtmlDivision) c.getParentNode()).getAttribute("class").contains("modelshown"))
                 .collect(Collectors.toList());
+
+//        final List<?> byXPath = page.getByXPath("*//h2");
+
+
+        final String modelPrefix = page.getByXPath("*//h2[@class='as-bundleselection-modeltitle']")
+                .stream()
+                .map(HtmlHeading2.class::cast)
+                .findFirst().get().getTextContent();
 
         final List<Product> products = new ArrayList<>();
 
@@ -47,7 +51,7 @@ public abstract class MacBookPriceController {
                     .map(HtmlHeading3.class::cast)
                     .findFirst().get();
 
-            final String model = "12-inch MacBook " + h3.getChildNodes()
+            final String model = modelPrefix + " " + h3.getChildNodes()
                     .stream()
                     .map(s -> s.toString())
                     .filter(s -> !s.contains("<br>"))

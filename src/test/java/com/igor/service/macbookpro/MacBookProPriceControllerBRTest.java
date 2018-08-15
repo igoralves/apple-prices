@@ -4,10 +4,7 @@ import com.igor.service.Product;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Currency;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by igor on 2018-08-15.
@@ -19,7 +16,7 @@ public class MacBookProPriceControllerBRTest {
 
         final MacBookProPriceControllerBR controller = new MacBookProPriceControllerBR();
 
-        final List<Product> products = controller.loadMacBookPros();
+        final List<Product> products = controller.loadMacBooksPro();
 
         Assert.assertEquals(6, products.size());
 
