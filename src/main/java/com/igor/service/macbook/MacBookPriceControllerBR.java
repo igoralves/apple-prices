@@ -14,8 +14,8 @@ import java.util.Locale;
 @RestController
 public class MacBookPriceControllerBR extends MacBookPriceController {
 
-    public static final String URL = "https://www.apple.com/br/shop/buy-mac/macbook";
-    public static final Locale LOCALE = new Locale("pt", "BR");;
+    private static final String URL = "https://www.apple.com/br/shop/buy-mac/macbook";
+    private static final Locale LOCALE = new Locale("pt", "BR");
 
     @RequestMapping("/br/macbook")
     public List<Product> loadMacBooks() throws IOException {

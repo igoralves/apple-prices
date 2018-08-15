@@ -1,6 +1,7 @@
-package com.igor.service.macbook;
+package com.igor.service.macbookair;
 
 import com.igor.service.Product;
+import com.igor.service.macbook.MacBookPriceController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,14 +13,14 @@ import java.util.Locale;
  * Created by igor on 2018-08-02.
  */
 @RestController
-public class MacBookPriceControllerNL extends MacBookPriceController {
+public class MacBookAirPriceControllerUS extends MacBookAirPriceController {
 
-    private static final String URL = "https://www.apple.com/nl/shop/buy-mac/macbook";
-    private static final Locale LOCALE = new Locale("nl", "NL");;
+    private static final String URL = "https://www.apple.com/shop/buy-mac/macbook-air";
+    private static final Locale LOCALE = Locale.US;
 
-    @RequestMapping("/nl/macbook")
+    @RequestMapping("/us/macbookair")
     public List<Product> loadMacBooks() throws IOException {
-        return super.loadMacBooks();
+        return super.loadMacBooksAir();
     }
 
     @Override

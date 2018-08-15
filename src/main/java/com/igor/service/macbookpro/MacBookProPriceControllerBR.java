@@ -13,10 +13,10 @@ import java.util.*;
 @RestController
 public class MacBookProPriceControllerBR extends MacBookProPriceController {
 
-    public static final String URL = "https://www.apple.com/br/shop/buy-mac/macbook-pro";
+    private static final String URL = "https://www.apple.com/br/shop/buy-mac/macbook-pro";
     public static final String TYPE_13_INCH = "13-polegadas";
     public static final String TYPE_15_INCH = "15-polegadas";
-    public static final Locale LOCALE = new Locale("pt", "BR");
+    private static final Locale LOCALE = new Locale("pt", "BR");
 
     @RequestMapping("/br/macbookpro")
     public List<Product> loadMacBooksPro() throws IOException {
