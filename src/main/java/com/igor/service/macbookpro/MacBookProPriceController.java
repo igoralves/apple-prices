@@ -6,8 +6,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlHeading3;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSpan;
 import com.igor.service.Product;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -84,8 +82,7 @@ public abstract class MacBookProPriceController {
             try {
                 price = parsePrice(span.get().getTextContent());
             } catch (ParseException e) {
-                price = 0F;
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
 
             products.add(new Product(model, price, Currency.getInstance(getLocale())));

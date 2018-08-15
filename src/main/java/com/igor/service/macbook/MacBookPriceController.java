@@ -63,8 +63,7 @@ public abstract class MacBookPriceController {
             try {
                 price = parsePrice(span.get().getTextContent());
             } catch (ParseException e) {
-                price = 0F;
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
 
             products.add(new Product(model, price, Currency.getInstance(getLocale())));

@@ -31,13 +31,4 @@ public class MacBookPriceControllerUS extends MacBookPriceController {
     protected Locale getLocale() {
         return LOCALE;
     }
-
-    public static void main(String[] args) throws IOException {
-
-        final MacBookPriceControllerUS controller = new MacBookPriceControllerUS();
-
-        final List<Product> products = controller.loadMacBooks();
-
-        products.forEach(System.out::println);
-    }
 }

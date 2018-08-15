@@ -14,8 +14,8 @@ import java.util.Locale;
 @RestController
 public class MacBookPriceControllerNL extends MacBookPriceController {
 
-    public static final String URL = "https://www.apple.com/shop/buy-mac/macbook";
-    public static final Locale LOCALE = Locale.US;
+    public static final String URL = "https://www.apple.com/nl/shop/buy-mac/macbook";
+    public static final Locale LOCALE = new Locale("nl", "NL");;
 
     @RequestMapping("/us/macbook")
     public List<Product> loadMacBooks() throws IOException {
@@ -30,14 +30,5 @@ public class MacBookPriceControllerNL extends MacBookPriceController {
     @Override
     protected Locale getLocale() {
         return LOCALE;
-    }
-
-    public static void main(String[] args) throws IOException {
-
-        final MacBookPriceControllerNL controller = new MacBookPriceControllerNL();
-
-        final List<Product> products = controller.loadMacBooks();
-
-        products.forEach(System.out::println);
     }
 }
