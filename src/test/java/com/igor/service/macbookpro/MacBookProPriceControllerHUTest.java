@@ -22,7 +22,7 @@ public class MacBookProPriceControllerHUTest {
 
         for (Product product : products) {
 
-            Assert.assertTrue(product.getModel().contains("hüvelykes"));
+            Assert.assertTrue(product.getModel().contains("hüvelykes MacBook Pro"));
 
             Assert.assertTrue(product.getPrice() > 400000);
 

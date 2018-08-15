@@ -22,7 +22,7 @@ public class MacBookProPriceControllerPLTest {
 
         for (Product product : products) {
 
-            Assert.assertTrue(product.getModel().contains("calowy"));
+            Assert.assertTrue(product.getModel().contains("-calowy MacBook Pro"));
 
             Assert.assertTrue(product.getPrice() > 6000);
 

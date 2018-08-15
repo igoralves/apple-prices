@@ -1,25 +1,21 @@
 package com.igor.service.imac;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlDivision;
-import com.gargoylesoftware.htmlunit.html.HtmlHeading3;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlSpan;
+import com.gargoylesoftware.htmlunit.html.*;
+import com.igor.service.MacPriceController;
 import com.igor.service.Product;
 
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * Created by igor on 2018-08-15.
  */
-public abstract class IMacPriceController {
+public abstract class IMacPriceController extends MacPriceController {
 
-    public static final String DATA_GROUP_21 = "21inch";
-    public static final String DATA_GROUP_27 = "27inch";
+    private static final String DATA_GROUP_21 = "21inch";
+    private static final String DATA_GROUP_27 = "27inch";
 
     protected List<Product> loadIMacs() throws IOException {
 
@@ -31,7 +27,7 @@ public abstract class IMacPriceController {
         return products;
     }
 
-    private List getProducts(String type) throws IOException {
+    private List<Product> getProducts(String type) throws IOException {
 
         final WebClient client = getClient();
 
@@ -57,64 +53,15 @@ public abstract class IMacPriceController {
                 .filter(c -> ((HtmlDivision) c.getParentNode()).getAttribute("class").contains("modelshown"))
                 .collect(Collectors.toList());
 
-        final List<Product> products = new ArrayList<>();
+        final String modelPrefix = page.getByXPath("*//h2[@class='as-bundleselection-modeltitle']")
+                .stream()
+                .map(HtmlHeading2.class::cast)
+                .findFirst().get().getTextContent().trim();
 
-        tags.forEach(tag -> {
-
-            final HtmlHeading3 h3 = tag.getByXPath("h3")
-                    .stream()
-                    .map(HtmlHeading3.class::cast)
-                    .findFirst().get();
-
-            final String model = type + " " + h3.getChildNodes()
-                    .stream()
-                    .map(s -> s.toString())
-                    .filter(s -> !s.contains("<br>"))
-                    .collect(Collectors.joining(" ")).replace("  ", " ");
-
-            final Optional<HtmlSpan> span = tag.getByXPath("*//span[@class='as-price-currentprice']/span")
-                    .stream()
-                    .map(HtmlSpan.class::cast)
-                    .findFirst();
-
-            Float price;
-
-            try {
-                price = parsePrice(span.get().getTextContent());
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-
-            products.add(new Product(model, price, Currency.getInstance(getLocale())));
-        });
-
-        return products;
+        return createProducts(tags, modelPrefix);
     }
-
-    private WebClient getClient() {
-
-        final WebClient client = new WebClient();
-
-        client.getOptions().setCssEnabled(false);
-        client.getOptions().setJavaScriptEnabled(false);
-
-        return client;
-    }
-
-    private Float parsePrice(String priceString) throws ParseException {
-
-        final NumberFormat numberFormat = NumberFormat.getCurrencyInstance(getLocale());
-
-        return numberFormat.parse(priceString.trim()).floatValue();
-    }
-
-    protected abstract String getURL();
 
     protected abstract String getType21Inch();
 
     protected abstract String getType27Inch();
-
-    protected abstract Locale getLocale();
-
-
 }

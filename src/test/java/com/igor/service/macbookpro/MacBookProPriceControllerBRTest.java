@@ -22,9 +22,12 @@ public class MacBookProPriceControllerBRTest {
 
         for (Product product : products) {
 
+            // TODO replace with regex
+            Assert.assertTrue(product.getModel().contains("MacBook Pro de"));
             Assert.assertTrue(product.getModel().contains("polegadas"));
 
             Assert.assertTrue(product.getPrice() > 10000);
+            Assert.assertTrue(product.getPrice() < 30000);
 
             Assert.assertTrue(product.getCurrency().getCurrencyCode().equals("BRL"));
         }

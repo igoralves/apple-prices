@@ -22,7 +22,7 @@ public class MacBookProPriceControllerNLTest {
 
         for (Product product : products) {
 
-            Assert.assertTrue(product.getModel().contains("inch"));
+            Assert.assertTrue(product.getModel().contains("-inch MacBook Pro"));
 
             Assert.assertTrue(product.getPrice() > 1000);
 

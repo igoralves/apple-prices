@@ -1,13 +1,10 @@
 package com.igor.service.imac;
 
 import com.igor.service.Product;
-import com.igor.service.macbookpro.MacBookProPriceControllerUS;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by igor on 2018-08-15.
@@ -24,7 +21,7 @@ public class IMacPriceControllerUSTest {
 
         for (Product product : products) {
 
-            Assert.assertTrue(product.getModel().contains("inch"));
+            Assert.assertTrue(product.getModel().contains("-inch iMac"));
 
             Assert.assertTrue(product.getPrice() > 1000);
             Assert.assertTrue(product.getPrice() < 3000);
