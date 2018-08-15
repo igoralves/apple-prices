@@ -1,4 +1,4 @@
-package com.igor.service.macbookpro;
+package com.igor.service.imac;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
@@ -14,19 +14,19 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Created by igor on 2018-08-11.
+ * Created by igor on 2018-08-15.
  */
-public abstract class MacBookProPriceController {
+public abstract class IMacPriceController {
 
-    public static final String DATA_GROUP_13 = "13inch";
-    public static final String DATA_GROUP_15 = "15inch";
+    public static final String DATA_GROUP_21 = "21inch";
+    public static final String DATA_GROUP_27 = "27inch";
 
-    protected List<Product> loadMacBooksPro() throws IOException {
+    protected List<Product> loadIMacs() throws IOException {
 
 
-        final List<Product> products = getProducts(getType13Inch());
+        final List<Product> products = getProducts(getType21Inch());
 
-        products.addAll(getProducts(getType15Inch()));
+        products.addAll(getProducts(getType27Inch()));
 
         return products;
     }
@@ -38,10 +38,10 @@ public abstract class MacBookProPriceController {
         final HtmlPage page = client.getPage(getURL());
         final String dataGroup;
 
-        if (type.equals(getType13Inch())) {
-            dataGroup = DATA_GROUP_13;
-        } else if (type.equals(getType15Inch())) {
-            dataGroup = DATA_GROUP_15;
+        if (type.equals(getType21Inch())) {
+            dataGroup = DATA_GROUP_21;
+        } else if (type.equals(getType27Inch())) {
+            dataGroup = DATA_GROUP_27;
         } else {
             throw new RuntimeException("Type does not exist");
         }
@@ -66,8 +66,6 @@ public abstract class MacBookProPriceController {
                     .map(HtmlHeading3.class::cast)
                     .findFirst().get();
 
-
-            // TODO - improve the way we get the model, we can also do it for iMacs ;)
             final String model = type + " " + h3.getChildNodes()
                     .stream()
                     .map(s -> s.toString())
@@ -112,9 +110,9 @@ public abstract class MacBookProPriceController {
 
     protected abstract String getURL();
 
-    protected abstract String getType13Inch();
+    protected abstract String getType21Inch();
 
-    protected abstract String getType15Inch();
+    protected abstract String getType27Inch();
 
     protected abstract Locale getLocale();
 
