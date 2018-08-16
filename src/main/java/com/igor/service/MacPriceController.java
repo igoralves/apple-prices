@@ -1,9 +1,7 @@
 package com.igor.service;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlDivision;
-import com.gargoylesoftware.htmlunit.html.HtmlHeading3;
-import com.gargoylesoftware.htmlunit.html.HtmlSpan;
+import com.gargoylesoftware.htmlunit.html.*;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -32,23 +30,36 @@ public abstract class MacPriceController {
                     .filter(s -> !s.contains("<br>"))
                     .collect(Collectors.joining(" ")).replace("  ", " ");
 
-            final Optional<HtmlSpan> span = tag.getByXPath("*//span[@class='as-price-currentprice']/span")
-                    .stream()
-                    .map(HtmlSpan.class::cast)
-                    .findFirst();
-
-            Float price;
-
-            try {
-                price = parsePrice(span.get().getTextContent());
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
+            final Float price = getPrice(tag);
 
             products.add(new Product(model, price, Currency.getInstance(getLocale())));
         });
 
         return products;
+    }
+
+    private Float getPrice(DomNode tag) {
+
+        final Optional<HtmlSpan> span = tag.getByXPath("*//span[@class='as-price-currentprice']/span")
+                .stream()
+                .map(HtmlSpan.class::cast)
+                .findFirst();
+
+        Float price;
+
+        try {
+            price = parsePrice(span.get().getTextContent());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return price;
+    }
+
+    protected Product createProduct(HtmlPage page, String model) {
+
+        final Float price = getPrice(page);
+
+        return new Product(model, price, Currency.getInstance(getLocale()));
     }
 
     protected WebClient getClient() {
