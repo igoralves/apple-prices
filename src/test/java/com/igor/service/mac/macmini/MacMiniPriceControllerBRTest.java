@@ -6,9 +6,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-/**
- * Created by igor on 2018-08-18.
- */
 public class MacMiniPriceControllerBRTest {
 
     @Test

@@ -4,9 +4,6 @@ import com.igor.service.Product;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created by igor on 2018-08-16.
- */
 public class IMacProPriceControllerUSTest {
     @Test
     public void loadIMacPro() throws Exception {

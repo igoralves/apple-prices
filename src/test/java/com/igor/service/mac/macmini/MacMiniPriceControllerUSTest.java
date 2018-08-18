@@ -1,17 +1,11 @@
 package com.igor.service.mac.macmini;
 
 import com.igor.service.Product;
-import com.igor.service.mac.macbookair.MacBookAirPriceControllerUS;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
-/**
- * Created by igor on 2018-08-18.
- */
 public class MacMiniPriceControllerUSTest {
 
     @Test
