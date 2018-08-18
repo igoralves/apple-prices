@@ -2,14 +2,11 @@ package com.igor.service.mac.imacpro;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.igor.service.mac.MacPriceController;
 import com.igor.service.Product;
+import com.igor.service.mac.MacPriceController;
 
 import java.io.IOException;
 
-/**
- * Created by igor on 2018-08-15.
- */
 public abstract class IMacProPriceController extends MacPriceController {
 
     private static final String MODEL = "iMac Pro";

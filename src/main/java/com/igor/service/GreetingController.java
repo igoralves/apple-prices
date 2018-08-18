@@ -1,14 +1,11 @@
 package com.igor.service;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by igor on 2018-08-02.
- */
+import java.util.concurrent.atomic.AtomicLong;
+
 @RestController
 public class GreetingController {
 

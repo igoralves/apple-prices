@@ -1,17 +1,16 @@
 package com.igor.service.mac.macbook;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.*;
-import com.igor.service.mac.MacPriceController;
+import com.gargoylesoftware.htmlunit.html.HtmlDivision;
+import com.gargoylesoftware.htmlunit.html.HtmlHeading2;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.igor.service.Product;
+import com.igor.service.mac.MacPriceController;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by igor on 2018-08-11.
- */
 public abstract class MacBookPriceController extends MacPriceController {
 
     protected List<Product> loadMacBooks() throws IOException {

@@ -1,17 +1,17 @@
 package com.igor.service.mac.macbookpro;
 
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.*;
-import com.igor.service.mac.MacPriceController;
+import com.gargoylesoftware.htmlunit.html.HtmlDivision;
+import com.gargoylesoftware.htmlunit.html.HtmlHeading2;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.igor.service.Product;
+import com.igor.service.mac.MacPriceController;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Created by igor on 2018-08-11.
- */
 public abstract class MacBookProPriceController extends MacPriceController {
 
     private static final String DATA_GROUP_13 = "13inch";
