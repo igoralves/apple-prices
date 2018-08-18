@@ -2,9 +2,6 @@ package com.igor.service;
 
 import java.util.Currency;
 
-/**
- * Created by igor on 2018-08-02.
- */
 public class Product {
 
     private String model;

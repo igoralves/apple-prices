@@ -11,9 +11,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by igor on 2018-08-18.
- */
 public abstract class MacMiniPriceController extends MacPriceController {
 
     List<Product> getProducts() throws IOException {

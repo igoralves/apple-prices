@@ -1,8 +1,5 @@
 package com.igor.service;
 
-/**
- * Created by igor on 2018-08-02.
- */
 public class Greeting {
 
     private final long id;

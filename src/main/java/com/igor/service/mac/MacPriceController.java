@@ -9,9 +9,6 @@ import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Created by igor on 2018-08-16.
- */
 public abstract class MacPriceController {
 
     protected List<Product> createProducts(List<HtmlDivision> tags, String modelPrefix) {

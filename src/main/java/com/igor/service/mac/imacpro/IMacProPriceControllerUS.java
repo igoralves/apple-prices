@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.Locale;
 
-/**
- * Created by igor on 2018-08-02.
- */
 @RestController
 public class IMacProPriceControllerUS extends IMacProPriceController {
 

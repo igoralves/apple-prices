@@ -6,9 +6,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-/**
- * Created by igor on 2018-08-15.
- */
 public class MacBookPriceControllerUSTest {
     @Test
     public void loadMacBooks() throws Exception {
