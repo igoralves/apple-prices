@@ -1,15 +1,17 @@
 package com.igor.service.mac;
 
-import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
+import com.igor.service.PriceController;
 import com.igor.service.Product;
 
-import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Currency;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-public abstract class MacPriceController {
+public abstract class MacPriceController extends PriceController {
 
     protected List<Product> createProducts(List<HtmlDivision> tags, String modelPrefix) {
 
@@ -59,26 +61,4 @@ public abstract class MacPriceController {
 
         return new Product(model, price, Currency.getInstance(getLocale()));
     }
-
-    protected WebClient getClient() {
-
-        final WebClient client = new WebClient();
-
-        client.getOptions().setCssEnabled(false);
-        client.getOptions().setJavaScriptEnabled(false);
-
-        return client;
-    }
-
-    private Float parsePrice(String priceString) throws ParseException {
-
-        final NumberFormat numberFormat = NumberFormat.getCurrencyInstance(getLocale());
-
-        return numberFormat.parse(priceString.trim()).floatValue();
-    }
-
-    protected abstract String getURL();
-
-    protected abstract Locale getLocale();
-
 }
