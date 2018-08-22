@@ -14,7 +14,6 @@ public class IpadPriceControllerUSTest {
     @Test
     public void getProducts() throws Exception {
 
-
         final IpadPriceControllerUS controller = new IpadPriceControllerUS();
 
         final List<Product> products = controller.getProducts();
@@ -34,7 +33,5 @@ public class IpadPriceControllerUSTest {
 
             Assert.assertTrue(product.getCurrency().getCurrencyCode().equals("USD"));
         }
-
     }
-
 }
