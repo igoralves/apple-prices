@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Locale;
 
 @RestController
-public class IpadPriceControllerUS extends IpadPriceController {
+public class IpadPriceControllerBR extends IpadPriceController {
 
-    private static final String URL = "https://www.apple.com/shop/buy-ipad/ipad-9-7";
-    private static final Locale LOCALE = Locale.US;
+    private static final String URL = "https://www.apple.com/br/shop/buy-ipad/ipad-9-7";
+    private static final Locale LOCALE = new Locale("pt", "BR");
 
-    @RequestMapping("/us/ipad")
+    @RequestMapping("/br/ipad")
     public List<Product> getProducts() throws IOException {
         return super.getProducts();
     }
