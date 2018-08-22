@@ -13,7 +13,7 @@ public class IMacProPriceControllerUS extends IMacProPriceController {
     private static final String URL = "https://www.apple.com/shop/buy-mac/imac-pro";
     private static final Locale LOCALE = Locale.US;
 
-    @RequestMapping("/us/imac")
+    @RequestMapping("/us/imacpro")
     public Product loadIMacPro() throws IOException {
         return super.loadIMacPro();
     }
