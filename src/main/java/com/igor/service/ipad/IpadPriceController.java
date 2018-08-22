@@ -1,5 +1,6 @@
 package com.igor.service.ipad;
 
+import com.gargoylesoftware.htmlunit.CookieManager;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
@@ -9,6 +10,7 @@ import com.igor.service.PriceController;
 import com.igor.service.Product;
 
 import java.io.IOException;
+import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Currency;
@@ -47,9 +49,23 @@ public abstract class IpadPriceController extends PriceController {
         client.getOptions().setJavaScriptEnabled(true);
 
         // this was necessary in order to give more time for loading the page after click
-        client.waitForBackgroundJavaScript(10000);
+        client.waitForBackgroundJavaScript(20000);
+
+        // this was necessary due to a bug in Google Cloud (https://issuetracker.google.com/issues/35889390)
+        client.setCookieManager(createCookieManager());
 
         return client.getPage(getURL());
+    }
+
+    private CookieManager createCookieManager() {
+        return new CookieManager() {
+            protected int getPort(URL url) {
+
+                final int port = super.getPort(url);
+
+                return port != -1 ? port : 80;
+            }
+        };
     }
 
     private List<Product> getProductsByCapacity(HtmlPage page, String capacity) throws IOException {
