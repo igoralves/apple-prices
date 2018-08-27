@@ -66,7 +66,8 @@ public class IpadPriceController extends PriceController {
         final HtmlPage page = webClient.getPage(url);
 
         // necessary in order to give more time for loading the page after click
-        webClient.waitForBackgroundJavaScript(40000);
+        webClient.waitForBackgroundJavaScript(20000);
+        webClient.waitForBackgroundJavaScriptStartingBefore(20000);
 
         return page;
     }

@@ -4,112 +4,50 @@ import com.igor.service.Product;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 public class IpadPriceControllerTest {
 
     @Test
+    public void getProductsBEFR() throws Exception {
+        testController("be-fr", "EUR", 300, 600);
+    }
+
+    @Test
     public void getProductsBR() throws Exception {
+        testController("br", "BRL", 2400, 4000);
+    }
 
-        final IpadPriceController controller = new IpadPriceController();
-
-        final List<Product> products = controller.getProducts("br");
-
-        Assert.assertEquals(4, products.size());
-
-        for (Product product : products) {
-
-            final String model = product.getModel();
-
-            Assert.assertTrue(model.contains("iPad"));
-
-            Assert.assertTrue(model.contains("32") || model.contains("128"));
-
-            Assert.assertTrue(product.getPrice() > 2400);
-            Assert.assertTrue(product.getPrice() < 4000);
-
-            Assert.assertTrue(product.getCurrency().getCurrencyCode().equals("BRL"));
-        }
+    @Test
+    public void getProductsCZ() throws Exception {
+        testController("cz", "CZK", 8000, 15000);
     }
 
     @Test
     public void getProductsHU() throws Exception {
-
-        final IpadPriceController controller = new IpadPriceController();
-
-        final List<Product> products = controller.getProducts("hu");
-
-        Assert.assertEquals(4, products.size());
-
-        for (Product product : products) {
-
-            final String model = product.getModel();
-
-            Assert.assertTrue(model.contains("iPad"));
-
-            Assert.assertTrue(model.contains("32") || model.contains("128"));
-
-            Assert.assertTrue(product.getPrice() > 115000);
-            Assert.assertTrue(product.getPrice() < 200000);
-
-            Assert.assertTrue(product.getCurrency().getCurrencyCode().equals("HUF"));
-        }
+        testController("hu", "HUF", 115000, 200000);
     }
 
     @Test
     public void getProductsNL() throws Exception {
-
-        final IpadPriceController controller = new IpadPriceController();
-
-        final List<Product> products = controller.getProducts("nl");
-
-        Assert.assertEquals(4, products.size());
-
-        for (Product product : products) {
-
-            final String model = product.getModel();
-
-            Assert.assertTrue(model.contains("iPad"));
-
-            Assert.assertTrue(model.contains("32") || model.contains("128"));
-
-            Assert.assertTrue(product.getPrice() > 300);
-            Assert.assertTrue(product.getPrice() < 600);
-
-            Assert.assertTrue(product.getCurrency().getCurrencyCode().equals("EUR"));
-        }
+        testController("nl", "EUR", 300, 600);
     }
 
     @Test
     public void getProductsPL() throws Exception {
-
-        final IpadPriceController controller = new IpadPriceController();
-
-        final List<Product> products = controller.getProducts("pl");
-
-        Assert.assertEquals(4, products.size());
-
-        for (Product product : products) {
-
-            final String model = product.getModel();
-
-            Assert.assertTrue(model.contains("iPad"));
-
-            Assert.assertTrue(model.contains("32") || model.contains("128"));
-
-            Assert.assertTrue(product.getPrice() > 1000);
-            Assert.assertTrue(product.getPrice() < 3000);
-
-            Assert.assertTrue(product.getCurrency().getCurrencyCode().equals("PLN"));
-        }
+        testController("pl", "PLN", 1000, 3000);
     }
 
     @Test
     public void getProductsUS() throws Exception {
+        testController("us", "USD", 300, 600);
+    }
 
+    private void testController(String countryCode, String currency, int rangeMin, int rangeMax) throws IOException {
         final IpadPriceController controller = new IpadPriceController();
 
-        final List<Product> products = controller.getProducts("us");
+        final List<Product> products = controller.getProducts(countryCode);
 
         Assert.assertEquals(4, products.size());
 
@@ -121,10 +59,10 @@ public class IpadPriceControllerTest {
 
             Assert.assertTrue(model.contains("32") || model.contains("128"));
 
-            Assert.assertTrue(product.getPrice() > 300);
-            Assert.assertTrue(product.getPrice() < 600);
+            Assert.assertTrue(product.getPrice() > rangeMin);
+            Assert.assertTrue(product.getPrice() < rangeMax);
 
-            Assert.assertTrue(product.getCurrency().getCurrencyCode().equals("USD"));
+            Assert.assertTrue(product.getCurrency().getCurrencyCode().equals(currency));
         }
     }
 }
