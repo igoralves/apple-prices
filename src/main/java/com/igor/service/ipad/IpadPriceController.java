@@ -54,14 +54,18 @@ public class IpadPriceController extends PriceController {
 
         final WebClient webClient = getClient();
 
+        // necessary for all iPad pages
         webClient.getOptions().setJavaScriptEnabled(true);
 
-        // this was necessary due to a bug in Google Cloud (https://issuetracker.google.com/issues/35889390)
+        // necessary for some stores (e.g. Hungary)
+        webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
+
+        // necessary due to a bug in Google Cloud (https://issuetracker.google.com/issues/35889390)
         webClient.setCookieManager(createCookieManager());
 
         final HtmlPage page = webClient.getPage(url);
 
-        // this was necessary in order to give more time for loading the page after click
+        // necessary in order to give more time for loading the page after click
         webClient.waitForBackgroundJavaScript(40000);
 
         return page;

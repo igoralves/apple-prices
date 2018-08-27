@@ -33,6 +33,54 @@ public class IpadPriceControllerTest {
     }
 
     @Test
+    public void getProductsHU() throws Exception {
+
+        final IpadPriceController controller = new IpadPriceController();
+
+        final List<Product> products = controller.getProducts("hu");
+
+        Assert.assertEquals(4, products.size());
+
+        for (Product product : products) {
+
+            final String model = product.getModel();
+
+            Assert.assertTrue(model.contains("iPad"));
+
+            Assert.assertTrue(model.contains("32") || model.contains("128"));
+
+            Assert.assertTrue(product.getPrice() > 115000);
+            Assert.assertTrue(product.getPrice() < 200000);
+
+            Assert.assertTrue(product.getCurrency().getCurrencyCode().equals("HUF"));
+        }
+    }
+
+    @Test
+    public void getProductsNL() throws Exception {
+
+        final IpadPriceController controller = new IpadPriceController();
+
+        final List<Product> products = controller.getProducts("nl");
+
+        Assert.assertEquals(4, products.size());
+
+        for (Product product : products) {
+
+            final String model = product.getModel();
+
+            Assert.assertTrue(model.contains("iPad"));
+
+            Assert.assertTrue(model.contains("32") || model.contains("128"));
+
+            Assert.assertTrue(product.getPrice() > 300);
+            Assert.assertTrue(product.getPrice() < 600);
+
+            Assert.assertTrue(product.getCurrency().getCurrencyCode().equals("EUR"));
+        }
+    }
+
+    @Test
     public void getProductsPL() throws Exception {
 
         final IpadPriceController controller = new IpadPriceController();
