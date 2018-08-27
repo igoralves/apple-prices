@@ -4,11 +4,9 @@ import com.gargoylesoftware.htmlunit.html.*;
 import com.igor.service.PriceController;
 import com.igor.service.Product;
 
+import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Currency;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class MacPriceController extends PriceController {
@@ -61,4 +59,15 @@ public abstract class MacPriceController extends PriceController {
 
         return new Product(model, price, Currency.getInstance(getLocale()));
     }
+
+    private Float parsePrice(String priceString) throws ParseException {
+
+        final NumberFormat numberFormat = NumberFormat.getCurrencyInstance(getLocale());
+
+        return numberFormat.parse(priceString.trim()).floatValue();
+    }
+
+    protected abstract String getURL();
+
+    protected abstract Locale getLocale();
 }

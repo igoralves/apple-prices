@@ -2,10 +2,6 @@ package com.igor.service;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.Locale;
-
 public abstract class PriceController {
 
     protected WebClient getClient() {
@@ -18,14 +14,5 @@ public abstract class PriceController {
         return client;
     }
 
-    protected Float parsePrice(String priceString) throws ParseException {
 
-        final NumberFormat numberFormat = NumberFormat.getCurrencyInstance(getLocale());
-
-        return numberFormat.parse(priceString.trim()).floatValue();
-    }
-
-    protected abstract String getURL();
-
-    protected abstract Locale getLocale();
 }
