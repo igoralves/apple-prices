@@ -30,6 +30,26 @@ public class IpadPriceControllerTest {
     }
 
     @Test
+    public void getProductsDE() throws Exception {
+        testController("de", "EUR", 300, 600);
+    }
+
+    @Test
+    public void getProductsDK() throws Exception {
+        testController("dk", "DKK", 2000, 6000);
+    }
+
+    @Test
+    public void getProductsES() throws Exception {
+        testController("es", "EUR", 300, 600);
+    }
+
+    @Test
+    public void getProductsFR() throws Exception {
+        testController("fr", "EUR", 300, 600);
+    }
+
+    @Test
     public void getProductsHU() throws Exception {
         testController("hu", "HUF", 115000, 200000);
     }
