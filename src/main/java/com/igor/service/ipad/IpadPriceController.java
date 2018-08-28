@@ -6,9 +6,10 @@ import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSpan;
+import com.igor.model.Country;
+import com.igor.model.Product;
 import com.igor.service.Countries;
 import com.igor.service.PriceController;
-import com.igor.model.Product;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class IpadPriceController extends PriceController {
@@ -29,7 +32,7 @@ public class IpadPriceController extends PriceController {
     @RequestMapping("/{countryCode}/ipad")
     public List<Product> getProducts(@PathVariable String countryCode) throws IOException {
 
-        final Locale locale = getLocale(countryCode);
+        final Country country = new Countries().getCountry(countryCode);
         final String url = getURL(countryCode);
 
         final HtmlPage firstPage = getFirstPage(url);
@@ -44,8 +47,8 @@ public class IpadPriceController extends PriceController {
 
         final List<Product> products = new ArrayList<>();
 
-        products.addAll(getProductsByCapacity(pageAfterChoosingColor, MODEL_32GB, locale));
-        products.addAll(getProductsByCapacity(pageAfterChoosingColor, MODEL_128GB, locale));
+        products.addAll(getProductsByCapacity(pageAfterChoosingColor, MODEL_32GB, country));
+        products.addAll(getProductsByCapacity(pageAfterChoosingColor, MODEL_128GB, country));
 
         return products;
     }
@@ -72,7 +75,7 @@ public class IpadPriceController extends PriceController {
         return page;
     }
 
-    private List<Product> getProductsByCapacity(HtmlPage page, String capacity, Locale locale) throws IOException {
+    private List<Product> getProductsByCapacity(HtmlPage page, String capacity, Country country) throws IOException {
 
         final String modelString = capacity.replace(" ", "").toLowerCase();
 
@@ -87,10 +90,10 @@ public class IpadPriceController extends PriceController {
         final List<HtmlDivision> divs = pageAfterChoosingCapacity
                 .getByXPath("//div[@id='Item3']//div[@class='form-element ']");
 
-        return createProducts(divs, capacity, locale);
+        return createProducts(divs, capacity, country);
     }
 
-    private List<Product> createProducts(List<HtmlDivision> divs, String capacity, Locale locale) {
+    private List<Product> createProducts(List<HtmlDivision> divs, String capacity, Country country) {
 
         final List<Product> products = new ArrayList<>();
 
@@ -111,24 +114,20 @@ public class IpadPriceController extends PriceController {
             final Float price;
 
             try {
-                price = parsePrice(priceSpan.get().getTextContent(), locale);
+                price = parsePrice(priceSpan.get().getTextContent(), country);
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
 
-            products.add(new Product(model, price, Currency.getInstance(locale)));
+            products.add(new Product(model, price, country.getCurrency()));
 
         });
 
         return products;
     }
 
-    private String getURL(@PathVariable String countryCode) {
+    private String getURL(String countryCode) {
         return String.format(URL, countryCode);
-    }
-
-    private Locale getLocale(@PathVariable String countryCode) {
-        return new Countries().getLocale(countryCode);
     }
 
     private CookieManager createCookieManager() {
@@ -142,9 +141,9 @@ public class IpadPriceController extends PriceController {
         };
     }
 
-    private Float parsePrice(String priceString, Locale locale) throws ParseException {
+    private Float parsePrice(String priceString, Country country) throws ParseException {
 
-        final NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+        final NumberFormat numberFormat = country.getNumberFormat();
 
         return numberFormat.parse(priceString.trim()).floatValue();
     }

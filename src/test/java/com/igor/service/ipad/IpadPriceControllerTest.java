@@ -10,6 +10,11 @@ import java.util.List;
 public class IpadPriceControllerTest {
 
     @Test
+    public void getProductsAU() throws Exception {
+        testController("au", "AUD", 400, 800);
+    }
+
+    @Test
     public void getProductsBEFR() throws Exception {
         testController("be-fr", "EUR", 300, 600);
     }
