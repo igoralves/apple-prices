@@ -1,6 +1,6 @@
 package com.igor.service.ipad;
 
-import com.igor.service.Product;
+import com.igor.model.Product;
 import org.junit.Assert;
 import org.junit.Test;
 

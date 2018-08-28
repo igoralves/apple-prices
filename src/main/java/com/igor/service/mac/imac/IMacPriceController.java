@@ -4,7 +4,7 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlHeading2;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.igor.service.Product;
+import com.igor.model.Product;
 import com.igor.service.mac.MacPriceController;
 
 import java.io.IOException;

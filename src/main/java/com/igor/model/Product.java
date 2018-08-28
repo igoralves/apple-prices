@@ -1,4 +1,4 @@
-package com.igor.service;
+package com.igor.model;
 
 import java.util.Currency;
 

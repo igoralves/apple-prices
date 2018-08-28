@@ -2,7 +2,7 @@ package com.igor.service.mac;
 
 import com.gargoylesoftware.htmlunit.html.*;
 import com.igor.service.PriceController;
-import com.igor.service.Product;
+import com.igor.model.Product;
 
 import java.text.NumberFormat;
 import java.text.ParseException;

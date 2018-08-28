@@ -1,6 +1,6 @@
 package com.igor.service.mac.macbookair;
 
-import com.igor.service.Product;
+import com.igor.model.Product;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
