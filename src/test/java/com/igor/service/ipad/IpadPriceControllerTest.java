@@ -55,6 +55,16 @@ public class IpadPriceControllerTest {
     }
 
     @Test
+    public void getProductsIE() throws Exception {
+        testController("ie", "EUR", 300, 600);
+    }
+
+    @Test
+    public void getProductsIT() throws Exception {
+        testController("it", "EUR", 300, 600);
+    }
+
+    @Test
     public void getProductsNL() throws Exception {
         testController("nl", "EUR", 300, 600);
     }

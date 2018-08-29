@@ -20,6 +20,8 @@ public class Countries {
         COUNTRIES_MAP.put("es", new Country(new Locale("es", "es"))); // Spain
         COUNTRIES_MAP.put("fr", new Country(Locale.FRANCE)); // Hungary
         COUNTRIES_MAP.put("hu", new Country(new Locale("hu", "HU"))); // Hungary
+        COUNTRIES_MAP.put("ie", new Country(new Locale("en", "IE"))); // Ireland
+        COUNTRIES_MAP.put("it", new Country(Locale.ITALY)); // Italy
         COUNTRIES_MAP.put("nl", new Country(new Locale("nl", "nl"))); // Netherlands
         COUNTRIES_MAP.put("pl", new Country(new Locale("pl", "PL"))); // Poland
         COUNTRIES_MAP.put("us", new Country(Locale.US)); // United States
