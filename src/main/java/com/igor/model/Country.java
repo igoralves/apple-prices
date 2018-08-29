@@ -8,19 +8,31 @@ import java.util.Locale;
 
 public class Country {
 
-    private final Locale locale;
-    private final NumberFormat numberFormat;
+    private Locale locale;
+    private DecimalFormat numberFormat;
 
-    public Country(Locale locale) {
-        this.locale = locale;
-        this.numberFormat = NumberFormat.getCurrencyInstance(locale);
+    public static Country create() {
+        return new Country();
     }
 
-    public Country(Locale locale, String customSymbol) {
+    private Country() {
+        // default constructor
+    }
+
+    public Country setLocale(Locale locale) {
 
         this.locale = locale;
+        this.numberFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(locale);
 
-        final DecimalFormat numberFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(locale);
+        return this;
+    }
+
+    public Country setCustomSymbol(String customSymbol) {
+
+        if (numberFormat == null) {
+            throw new NullPointerException("The attribute Country.numberFormat is null. Please use the method " +
+                    "'setLocale(Locale)' before invoking this method.");
+        }
 
         final DecimalFormatSymbols decimalFormatSymbols = numberFormat.getDecimalFormatSymbols();
 
@@ -28,24 +40,35 @@ public class Country {
 
         numberFormat.setDecimalFormatSymbols(decimalFormatSymbols);
 
-        this.numberFormat = numberFormat;
+        return this;
     }
 
-    public Country(Locale locale, String customSymbol, String pattern) {
+    public Country setGroupingSeparator(Character groupingSeparator) {
 
-        this.locale = locale;
-
-        final DecimalFormat numberFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(locale);
+        if (numberFormat == null) {
+            throw new NullPointerException("The attribute Country.numberFormat is null. Please use the method " +
+                    "'setLocale(Locale)' before invoking this method.");
+        }
 
         final DecimalFormatSymbols decimalFormatSymbols = numberFormat.getDecimalFormatSymbols();
 
-        decimalFormatSymbols.setCurrencySymbol(customSymbol);
+        decimalFormatSymbols.setGroupingSeparator(groupingSeparator);
 
         numberFormat.setDecimalFormatSymbols(decimalFormatSymbols);
+
+        return this;
+    }
+
+    public Country setPattern(String pattern) {
+
+        if (numberFormat == null) {
+            throw new NullPointerException("The attribute Country.numberFormat is null. Please use the method " +
+                    "'setLocale(Locale)' before invoking this method.");
+        }
 
         numberFormat.applyPattern(pattern);
 
-        this.numberFormat = numberFormat;
+        return this;
     }
 
     public Locale getLocale() {
