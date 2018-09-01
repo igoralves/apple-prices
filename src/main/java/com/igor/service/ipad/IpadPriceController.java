@@ -10,6 +10,7 @@ import com.igor.model.Country;
 import com.igor.model.Product;
 import com.igor.service.Countries;
 import com.igor.service.PriceController;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,7 @@ public class IpadPriceController extends PriceController {
     private static final String MODEL_128GB = "128 GB";
 
     @RequestMapping("/{countryCode}/ipad")
+    @Cacheable("ipad")
     public List<Product> getProducts(@PathVariable String countryCode) throws IOException {
 
         final Country country = new Countries().getCountry(countryCode);
