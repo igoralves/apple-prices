@@ -11,9 +11,8 @@ public class Countries {
     private static final Map<String, Country> COUNTRIES_MAP = new HashMap<>();
 
     static {
+        COUNTRIES_MAP.put("at", Country.create().setLocale(new Locale("de", "AT")).setPattern("###,###.### ¤")); // Austria
         COUNTRIES_MAP.put("au", Country.create().setLocale(new Locale("en", "AU")).setCustomSymbol("A$")); // Australia
-
-
         COUNTRIES_MAP.put("be-fr", Country.create().setLocale(new Locale("fr", "BE"))); // Belgium
         COUNTRIES_MAP.put("br", Country.create().setLocale(new Locale("pt", "BR"))); // Brazil
         COUNTRIES_MAP.put("cz", Country.create().setLocale(new Locale("cs", "CZ"))); // Czech Republic
@@ -28,6 +27,8 @@ public class Countries {
         COUNTRIES_MAP.put("nl", Country.create().setLocale(new Locale("nl", "nl"))); // Netherlands
         COUNTRIES_MAP.put("no", Country.create().setLocale(new Locale("no", "NO")).setGroupingSeparator(' ')); // Norway
         COUNTRIES_MAP.put("pl", Country.create().setLocale(new Locale("pl", "PL"))); // Poland
+        COUNTRIES_MAP.put("pt", Country.create().setLocale(new Locale("pt", "PT"))); // Portugal
+        COUNTRIES_MAP.put("ru", Country.create().setLocale(new Locale("ru", "RU")).setCustomSymbol("pyб.").setGroupingSeparator(' ').setMonetaryDecimalSeparator('.')); // Russia
         COUNTRIES_MAP.put("us", Country.create().setLocale(Locale.US)); // United States
     }
 

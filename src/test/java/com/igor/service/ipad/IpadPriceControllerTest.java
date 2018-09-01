@@ -10,6 +10,11 @@ import java.util.List;
 public class IpadPriceControllerTest {
 
     @Test
+    public void getProductsAT() throws Exception {
+        testController("at", "EUR", 300, 600);
+    }
+
+    @Test
     public void getProductsAU() throws Exception {
         testController("au", "AUD", 400, 800);
     }
@@ -82,6 +87,16 @@ public class IpadPriceControllerTest {
     @Test
     public void getProductsPL() throws Exception {
         testController("pl", "PLN", 1000, 3000);
+    }
+
+    @Test
+    public void getProductsPT() throws Exception {
+        testController("pt", "EUR", 300, 600);
+    }
+
+    @Test
+    public void getProductsRU() throws Exception {
+        testController("ru", "RUB", 24000, 42000);
     }
 
     @Test

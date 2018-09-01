@@ -59,6 +59,22 @@ public class Country {
         return this;
     }
 
+    public Country setMonetaryDecimalSeparator(Character decimalSeparator) {
+
+        if (numberFormat == null) {
+            throw new NullPointerException("The attribute Country.numberFormat is null. Please use the method " +
+                    "'setLocale(Locale)' before invoking this method.");
+        }
+
+        final DecimalFormatSymbols decimalFormatSymbols = numberFormat.getDecimalFormatSymbols();
+
+        decimalFormatSymbols.setMonetaryDecimalSeparator(decimalSeparator);
+
+        numberFormat.setDecimalFormatSymbols(decimalFormatSymbols);
+
+        return this;
+    }
+
     public Country setPattern(String pattern) {
 
         if (numberFormat == null) {
