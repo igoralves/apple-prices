@@ -30,6 +30,11 @@ public class IpadPriceControllerTest {
     }
 
     @Test
+    public void getProductsCHDE() throws Exception {
+        testController("ch-de", "CHF", 300, 700);
+    }
+
+    @Test
     public void getProductsCZ() throws Exception {
         testController("cz", "CZK", 8000, 15000);
     }
@@ -47,6 +52,11 @@ public class IpadPriceControllerTest {
     @Test
     public void getProductsES() throws Exception {
         testController("es", "EUR", 300, 600);
+    }
+
+    @Test
+    public void getProductsFI() throws Exception {
+        testController("fi", "EUR", 300, 600);
     }
 
     @Test
@@ -97,6 +107,11 @@ public class IpadPriceControllerTest {
     @Test
     public void getProductsRU() throws Exception {
         testController("ru", "RUB", 24000, 42000);
+    }
+
+    @Test
+    public void getProductsSE() throws Exception {
+        testController("se", "SEK", 3000, 7000);
     }
 
     @Test
