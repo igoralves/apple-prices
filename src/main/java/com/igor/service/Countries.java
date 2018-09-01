@@ -35,6 +35,8 @@ public class Countries {
         COUNTRIES_MAP.put("pt", Country.create().setLocale(new Locale("pt", "PT"))); // Portugal
         COUNTRIES_MAP.put("ru", Country.create().setLocale(new Locale("ru", "RU")).setCustomSymbol("pyб.").setGroupingSeparator(NO_BREAK_SPACE_CHARACTER).setMonetaryDecimalSeparator('.')); // Russia
         COUNTRIES_MAP.put("se", Country.create().setLocale(new Locale("sv", "SE")).setGroupingSeparator(SPACE_CHARACTER)); // Sweden
+        COUNTRIES_MAP.put("tr", Country.create().setLocale(new Locale("tr", "TR"))); // Turkey
+        COUNTRIES_MAP.put("uk", Country.create().setLocale(Locale.UK)); // United Kingdom
         COUNTRIES_MAP.put("us", Country.create().setLocale(Locale.US)); // United States
     }
 

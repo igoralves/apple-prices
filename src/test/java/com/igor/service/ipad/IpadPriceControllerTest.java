@@ -115,11 +115,22 @@ public class IpadPriceControllerTest {
     }
 
     @Test
+    public void getProductsTR() throws Exception {
+        testController("tr", "TRY", 1000, 4000);
+    }
+
+    @Test
+    public void getProductsUK() throws Exception {
+        testController("uk", "GBP", 300, 600);
+    }
+
+    @Test
     public void getProductsUS() throws Exception {
         testController("us", "USD", 300, 600);
     }
 
     private void testController(String countryCode, String currency, int rangeMin, int rangeMax) throws IOException {
+
         final IpadPriceController controller = new IpadPriceController();
 
         final List<Product> products = controller.getProducts(countryCode);
