@@ -1,1 +1,1 @@
-web: java -jar target/appleprices-0.0.1-SNAPSHOT.war
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/appleprices-0.0.1-SNAPSHOT.war
