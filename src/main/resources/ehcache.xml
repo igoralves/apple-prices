@@ -31,4 +31,11 @@
            overflowToDisk="false"
            memoryStoreEvictionPolicy="LRU"/>
 
+    <cache name="macbookpro"
+           maxElementsInMemory="1000"
+           timeToIdleSeconds="86400"
+           timeToLiveSeconds="86400"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LRU"/>
+
 </ehcache>
