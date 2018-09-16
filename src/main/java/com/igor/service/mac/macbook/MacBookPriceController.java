@@ -5,23 +5,33 @@ import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlHeading2;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.igor.model.Product;
-import com.igor.service.mac.MacPriceController;
+import com.igor.service.CountryRepository;
+import com.igor.service.mac.NewMacPriceController;
+import com.igor.xml.Country;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class MacBookPriceController extends MacPriceController {
+@RestController
+public class MacBookPriceController extends NewMacPriceController {
 
-    protected List<Product> loadMacBooks() throws IOException {
-        return getProducts();
-    }
+    private static final String URL = "https://www.apple.com/%s/shop/buy-mac/macbook";
 
-    private List<Product> getProducts() throws IOException {
+    @RequestMapping("/{countryCode}/macbook")
+    @Cacheable("macbook")
+    public List<Product> getProducts(@PathVariable String countryCode) throws IOException {
+
+        final Country country = new CountryRepository().getCountry(countryCode);
+        final String url = getURL(countryCode);
 
         final WebClient client = getClient();
 
-        final HtmlPage page = client.getPage(getURL());
+        final HtmlPage page = client.getPage(url);
 
         final List<HtmlDivision> tags = page.getByXPath("*//div[@class='as-macbtr-optioncontent']")
                 .stream()
@@ -34,6 +44,10 @@ public abstract class MacBookPriceController extends MacPriceController {
                 .map(HtmlHeading2.class::cast)
                 .findFirst().get().getTextContent().trim();
 
-        return createProducts(tags, modelPrefix);
+        return createProducts(tags, modelPrefix, country);
+    }
+
+    private String getURL(String countryCode) {
+        return String.format(URL, countryCode);
     }
 }

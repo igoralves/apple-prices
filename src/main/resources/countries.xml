@@ -19,6 +19,7 @@
         <appleCode>be-fr</appleCode>
         <language>fr</language>
         <countryCode>BE</countryCode>
+        <groupingSeparator> </groupingSeparator>
     </country>
     <country>
         <name>Brazil</name>
@@ -32,6 +33,7 @@
         <language>de</language>
         <countryCode>CH</countryCode>
         <customSymbol>CHF</customSymbol>
+        <groupingSeparator>,</groupingSeparator>
     </country>
     <country>
         <name>Czech Republic</name>
@@ -64,12 +66,14 @@
         <appleCode>fi</appleCode>
         <language>fi</language>
         <countryCode>FI</countryCode>
+        <groupingSeparator> </groupingSeparator>
     </country>
     <country>
         <name>France</name>
         <appleCode>fr</appleCode>
         <language>fr</language>
         <countryCode>FR</countryCode>
+        <groupingSeparator> </groupingSeparator>
     </country>
     <country>
         <name>Hungary</name>
@@ -94,6 +98,7 @@
         <appleCode>lu</appleCode>
         <language>fr</language>
         <countryCode>LU</countryCode>
+        <groupingSeparator> </groupingSeparator>
     </country>
     <country>
         <name>Netherlands</name>
