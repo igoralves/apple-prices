@@ -6,9 +6,9 @@ import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSpan;
-import com.igor.model.Country;
+import com.igor.xml.Country;
 import com.igor.model.Product;
-import com.igor.service.Countries;
+import com.igor.service.CountryRepository;
 import com.igor.service.PriceController;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +34,7 @@ public class IpadPriceController extends PriceController {
     @Cacheable("ipad")
     public List<Product> getProducts(@PathVariable String countryCode) throws IOException {
 
-        final Country country = new Countries().getCountry(countryCode);
+        final Country country = new CountryRepository().getCountry(countryCode);
         final String url = getURL(countryCode);
 
         final HtmlPage firstPage = getFirstPage(url);

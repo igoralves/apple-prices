@@ -116,7 +116,7 @@ public class IpadPriceControllerTest {
 
     @Test
     public void getProductsTR() throws Exception {
-        testController("tr", "TRY", 1000, 4000);
+        testController("tr", "TRY", 2000, 5000);
     }
 
     @Test
