@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-// TODO this class will replace MacPriceController
 public abstract class NewMacPriceController extends PriceController {
 
     protected List<Product> createProducts(List<HtmlDivision> tags, String modelPrefix, Country country) {
@@ -36,6 +35,13 @@ public abstract class NewMacPriceController extends PriceController {
         });
 
         return products;
+    }
+
+    protected Product createProduct(HtmlPage page, String model, Country country) {
+
+        final Float price = getPrice(page, country);
+
+        return new Product(model, price, country.getCurrency());
     }
 
     private Float getPrice(DomNode tag, Country country) {
