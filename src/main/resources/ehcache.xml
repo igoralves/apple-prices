@@ -17,4 +17,11 @@
            overflowToDisk="false"
            memoryStoreEvictionPolicy="LRU"/>
 
+    <cache name="macbookair"
+           maxElementsInMemory="1000"
+           timeToIdleSeconds="86400"
+           timeToLiveSeconds="86400"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LRU"/>
+
 </ehcache>
