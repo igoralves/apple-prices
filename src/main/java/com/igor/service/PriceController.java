@@ -1,8 +1,11 @@
 package com.igor.service;
 
 import com.gargoylesoftware.htmlunit.WebClient;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class PriceController {
+
+    private CountryRepository countryRepository;
 
     protected WebClient getClient() {
 
@@ -14,5 +17,8 @@ public abstract class PriceController {
         return client;
     }
 
-
+    @Autowired
+    public CountryRepository getCountryRepository() {
+        return countryRepository;
+    }
 }

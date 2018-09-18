@@ -26,7 +26,7 @@ public class MacMiniPriceController extends NewMacPriceController {
     @Cacheable("macmini")
     public List<Product> getProducts(@PathVariable String countryCode) throws IOException {
 
-        final Country country = new CountryRepository().getCountry(countryCode);
+        final Country country = getCountryRepository().getCountry(countryCode);
         final String url = getURL(countryCode);
 
         final WebClient client = getClient();

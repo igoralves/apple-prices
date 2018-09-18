@@ -4,6 +4,7 @@ import com.igor.xml.Countries;
 import com.igor.xml.Country;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -12,15 +13,16 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
 public class CountryRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CountryRepository.class);
 
     private static final String COUNTRIES_FILE = "countries.xml";
 
-    private static final Map<String, Country> COUNTRIES_MAP = new HashMap<>();
+    private final Map<String, Country> countriesMap = new HashMap<>();
 
-    static {
+    public CountryRepository() {
 
         final ClassLoader classLoader = CountryRepository.class.getClassLoader();
         final File file = new File(classLoader.getResource(COUNTRIES_FILE).getFile());
@@ -35,7 +37,7 @@ public class CountryRepository {
 
                 LOGGER.info("Adding " + country.getName());
 
-                COUNTRIES_MAP.put(country.getAppleCode(), country);
+                countriesMap.put(country.getAppleCode(), country);
             }
 
         } catch (JAXBException e) {
@@ -43,7 +45,8 @@ public class CountryRepository {
         }
     }
 
+
     public Country getCountry(String countryCode) {
-        return COUNTRIES_MAP.get(countryCode);
+        return countriesMap.get(countryCode);
     }
 }
