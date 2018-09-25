@@ -3,7 +3,7 @@ package com.igor.service.mac.imacpro;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.igor.model.Product;
-import com.igor.service.mac.NewMacPriceController;
+import com.igor.service.mac.MacPriceController;
 import com.igor.xml.Country;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-public class IMacProPriceController extends NewMacPriceController {
+public class IMacProPriceController extends MacPriceController {
 
     private static final String URL = "https://www.apple.com/%s/shop/buy-mac/imac-pro";
 

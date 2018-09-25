@@ -17,8 +17,13 @@ public abstract class PriceController {
         return client;
     }
 
-    @Autowired
+    // TODO find a better way to inject dependency
     public CountryRepository getCountryRepository() {
+
+        if (countryRepository == null) {
+            countryRepository = new CountryRepository();
+        }
+
         return countryRepository;
     }
 }

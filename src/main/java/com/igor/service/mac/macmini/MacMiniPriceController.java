@@ -5,7 +5,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlHeading2;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.igor.model.Product;
-import com.igor.service.mac.NewMacPriceController;
+import com.igor.service.mac.MacPriceController;
 import com.igor.xml.Country;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-public class MacMiniPriceController extends NewMacPriceController {
+public class MacMiniPriceController extends MacPriceController {
 
     private static final String URL = "https://www.apple.com/%s/shop/buy-mac/mac-mini";
 

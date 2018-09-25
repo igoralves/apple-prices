@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public abstract class NewMacPriceController extends PriceController {
+public abstract class MacPriceController extends PriceController {
 
     protected List<Product> createProducts(List<HtmlDivision> tags, String modelPrefix, Country country) {
 
