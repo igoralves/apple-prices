@@ -1,12 +1,10 @@
 package com.igor.service.mac.imacpro;
 
 import com.igor.model.Product;
-import com.igor.service.mac.macmini.MacMiniPriceController;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.List;
 
 public class IMacProPriceControllerTest {
 

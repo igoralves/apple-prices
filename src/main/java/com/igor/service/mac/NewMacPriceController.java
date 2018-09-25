@@ -7,7 +7,9 @@ import com.igor.xml.Country;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public abstract class NewMacPriceController extends PriceController {

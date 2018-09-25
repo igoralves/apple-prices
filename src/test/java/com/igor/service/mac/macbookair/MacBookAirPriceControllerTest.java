@@ -1,7 +1,6 @@
 package com.igor.service.mac.macbookair;
 
 import com.igor.model.Product;
-import com.igor.service.mac.macbook.MacBookPriceController;
 import org.junit.Assert;
 import org.junit.Test;
 
