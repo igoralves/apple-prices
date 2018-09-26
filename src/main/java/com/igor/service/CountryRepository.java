@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.File;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,13 +25,13 @@ public class CountryRepository {
     public CountryRepository() {
 
         final ClassLoader classLoader = CountryRepository.class.getClassLoader();
-        final File file = new File(classLoader.getResource(COUNTRIES_FILE).getFile());
+        final InputStream inputStream = classLoader.getResourceAsStream(COUNTRIES_FILE);
 
         try {
 
             final JAXBContext jaxbContext = JAXBContext.newInstance(Countries.class);
             final Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            final Countries countries = (Countries) jaxbUnmarshaller.unmarshal(file);
+            final Countries countries = (Countries) jaxbUnmarshaller.unmarshal(inputStream);
 
             for (Country country : countries.getCountries()) {
 
