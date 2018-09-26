@@ -59,13 +59,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- This avoids problems with GAE-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
